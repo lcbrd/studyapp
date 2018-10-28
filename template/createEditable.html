@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div name="toolbar"></div>
+
+    <div id="container" style="height: 400px"></div>
+    <div id="drag"></div>
+    <div id="drop"></div>
+    <input id='btn' type="button" value="bb">
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <script src="..//static//jquery-3.3.1.js"></script>
+    <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+    <script src="..//static//highcharts.js"></script>
+    <!-- <script src="https://rawgithub.com/highcharts/draggable-points/master/draggable-points.js"></script> -->
+    <script src="..//static//draggable-points.js"></script>
+    <script>
+        
+        var chart = new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'container',
+                animation: false
+            },
+
+            title: {
+                text: 'Highcharts draggable points demo'
+            },
+
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+
+            plotOptions: {
+                series: {
+                    // point: {
+                    //     events: {
+
+                    //         drag: function (e) {
+                    //             // Returning false stops the drag and drops. Example:
+                    //             /*
+                    //             if (e.newY > 300) {
+                    //                 this.y = 300;
+                    //                 return false;
+                    //             }
+                    //             */
+
+                    //             $('#drag').html(
+                    //                 'Dragging <b>' + this.series.name + '</b>, <b>' + this.category + '</b> to <b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
+                    //         },
+                    //         drop: function () {
+                    //             $('#drop').html(
+                    //                 'In <b>' + this.series.name + '</b>, <b>' + this.category + '</b> was set to <b>' + Highcharts.numberFormat(this.y, 2) + '</b>');
+                    //         }
+                    //     }
+                    // },
+                    stickyTracking: false
+                },
+                column: {
+                    stacking: 'normal'
+                },
+                line: {
+                    cursor: 'ns-resize'
+                }
+            },
+
+            tooltip: {
+                yDecimals: 2
+            },
+
+            series: [{
+                data: [0, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+                draggableY: true
+            }]
+
+        });
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                alert(chart.series[0].data)
+            })
+            
+        })
+    </script>
+</body>
+
+</html>
