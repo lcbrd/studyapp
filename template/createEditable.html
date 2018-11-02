@@ -9,34 +9,44 @@
 </head>
 
 <body>
-    <div name="toolbar"></div>
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
-      </div>
-    
+
+    <div id="mapp">
+
+        <div name="toolbar"></div>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                    aria-controls="pills-contact" aria-selected="false">Contact</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"></div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><input
+                    type="button" value="1" id="btn"></div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+        </div>
+
+
+        <table title="列表数据">
+            <tr>
+                <td v-for="item in cur_data2">
+                    {{item}}
+                </td>
+            </tr>
+        </table>
+
+    </div>
     <div id="container" style="height: 400px"></div>
-    
-    <table title="列表数据" >
-        <tr id="vfordata">
-            <td v-for="item in cur_data2" >
-                {{item}}
-            </td>
-        </tr>
-    </table>
-    
+
+
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
     <script src="..//static//jquery.js"></script>
     <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
@@ -47,8 +57,6 @@
     <script src="..//static/bootstrap.min.js"></script>
     <script>
         var cur_data = [0, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4];
-        
-    
         var chart = new Highcharts.Chart({
 
             chart: {
@@ -102,35 +110,53 @@
             },
 
             series: [{
-                data:cur_data,
+                data: [0, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
                 draggableY: true
             }]
 
         });
+
+
         var vm = new Vue({
-  el: '#vfordata',
-  data: {
-    cur_data1: chart.series[0].data
-  },
-  computed: {
-    cur_data2: {
-    // getter
-    get: function () {
-        var arr = new Array()
-        
-        $.each(chart.series[0].data,function(i){
-            arr.push(Highcharts.numberFormat(chart.series[0].data[i].y,0))
+            el: '#mapp',
+            data: {
+                cur_data1: [0, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+
+            },
+            computed: {
+                cur_data2: {
+                    // getter
+                    get: function () {
+                        var arr = new Array()
+
+                        $.each(chart.series[0].data, function (i) {
+                            arr.push(Highcharts.numberFormat(chart.series[0].data[i].y, 0))
+                        })
+                        return arr
+                    },
+                    // setter
+                    set: function (newValue) {
+                        chart.series[0].setData([2, 3, 4, 5])
+                    }
+                }
+            },
+            methods: {
+                chartflesh: function (events) {
+                    alert('123')
+                    cur_data2 = [2, 3, 4, 5]
+                }, say: function (message) {
+                    alert(message)
+                }
+            }
         })
-      return arr
-    },
-    // setter
-    set: function (newValue) {
-      chart.series[0].setdata(newValue)
-    }
-  }
-  }
-})
-        </script>
+
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                alert('123')
+                chart.series[0].setData([2, 3, 4, 5])
+            })
+        })
+    </script>
 </body>
 
 </html>
