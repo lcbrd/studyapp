@@ -46,9 +46,10 @@
                 </td>
             </tr>
         </table>
-        <div id="container" style="height: 400px"></div>
+
     </div>
-    
+    <div id="container" style="height: 400px"></div>
+
 
 
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
@@ -114,7 +115,7 @@
             },
 
             series: [{
-                data: [0, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+                data: cur_data,
                 draggableY: true
             }]
 
@@ -124,7 +125,7 @@
         var vm = new Vue({
             el: '#mapp',
             data: {
-                cur_data1: [0, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+                cur_data1: chart.series[0].data,
 
             },
             computed: {
@@ -132,9 +133,9 @@
                     // getter
                     get: function () {
                         var arr = new Array()
-
+                        var t = this.cur_data1
                         $.each(chart.series[0].data, function (i) {
-                            arr.push(Highcharts.numberFormat(chart.series[0].data[i].y, 0))
+                            arr.push(Highcharts.numberFormat(t[i].y, 0))
                         })
                         return arr
                     },
