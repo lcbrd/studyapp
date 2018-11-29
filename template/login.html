@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
     <meta charset="UTF-8">
 
     <meta http-equiv="X-UA-Compatible">
-    <link rel="stylesheet" href="..//static//bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "bootstrap.min.css" %}">
     <title>登陆</title>
 </head>
 
@@ -19,7 +19,7 @@
         <div class="row align-content-center justify-content-center mt-5">
 
 
-            <form>
+            <form method="POST">{% csrf_token %}
 
                 <DIV class="form-group">
                     <label class="form-control-plaintext col-form-label">用户名</label> <input class="input-group-text"
