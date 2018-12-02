@@ -13,7 +13,7 @@
     <div class="container">
         <!-- this is header templa -->
         <div id="header" class="card-header bg-dark text-light">
-            <h1 class="row display-1 align-items-center justify-content-center mb-5">{{title}}</h1>
+            <h1 class="row display-4 align-items-center justify-content-center m-5">观测培训系统</h1>
         </div>
         <!-- this is header templa -->
         <div class="row align-content-center justify-content-center mt-5">
@@ -23,13 +23,13 @@
 
                 <DIV class="form-group">
                     <label class="form-control-plaintext col-form-label">用户名</label> <input class="input-group-text"
-                        type="text" />
+                        type="text" name="uname"/>
                 </DIV>
                 <div class="form-group">
-                    <label class="col-form-label">密码</label> <input class="input-group-text" type="password" />
+                    <label class="col-form-label">密码</label> <input class="input-group-text" type="password" name="pwd" />
                 </div>
-
-                <input class="btn btn-primary" type="submit">
+                <label style="color:red">{{msg}}</label><br>
+                <input class="btn btn-primary" type="submit" value="登陆">
             </form>
         </div>
     </div>

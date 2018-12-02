@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="..//static//bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="..//static//iconfont.css">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'iconfont.css' %}">
 </head>
 
 <body>
 
     <!-- this is header templa -->
     <div id="header" class="card-header bg-dark text-light">
-        <h1 class="row align-items-center justify-content-center mb-5">title</h1>
+        <h1 class="row display-4 align-items-center justify-content-center m-5">观测培训系统</h1>
     </div>
     <!-- this is header templa -->
     <div class="container">
@@ -66,8 +66,8 @@
             </div>
         </div>
     </div>
-    <script src="..//static//jquery.js"></script>
-    <script src="..//static/bootstrap.min.js"></script>
+    <script src="{% static 'jquery.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
 </body>
 
 </html>
